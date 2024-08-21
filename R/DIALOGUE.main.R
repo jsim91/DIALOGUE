@@ -202,7 +202,7 @@ DIALOGUE1<-function(rA,main,param){
   
   Y<-lapply(names(X), function(i) X[[i]]%*%out$ws[[i]])
   names(Y)<-names(X)
-  pairs1<-t(combn(names(X),2))
+  pairs1<-t(utils::combn(names(X),2))
   cca.cor<-apply(pairs1,1,function(x) diag(cor(Y[[x[1]]],Y[[x[2]]])))
   cca.cor.p<-apply(pairs1,1,function(x) diag(spearman.cor(Y[[x[1]]],Y[[x[2]]],method = "pearson")$p))
   colnames(cca.cor)<-paste(pairs1[,1],pairs1[,2],sep = "_")
@@ -316,7 +316,7 @@ DIALOGUE1.PMD.empirical<-function(X,k,seed = 1234,n1 = 20,extra.sparse = F,full.
   }
   Y<-lapply(names(X), function(i) X[[i]]%*%out$ws[[i]])
   names(Y)<-names(X)
-  pairs1<-t(combn(names(X),2))
+  pairs1<-t(utils::combn(names(X),2))
   cca.cor<-apply(pairs1,1,function(x) diag(cor(Y[[x[1]]],Y[[x[2]]])))
   colnames(cca.cor)<-paste(pairs1[,1],pairs1[,2],sep = "_")
   if(full.output){
@@ -377,7 +377,7 @@ DIALOGUE2<-function(rA,main,results.dir = "~/Desktop/DIALOGUE.results/"){
   print(R$frm)
   
   k2<-ncol(R$cca$ws[[1]])
-  pairs1<-t(combn(cell.types,2))
+  pairs1<-t(utils::combn(cell.types,2))
   sig<-R$cca.sig
   
   f<-function(i){
@@ -499,7 +499,7 @@ DIALOGUE3<-function(rA,main,results.dir = "~/Desktop/DIALOGUE.results/"){
   names(rA)<-cell.types
   R$pref<-list()
   idx<-unique(get.strsplit(names(R$sig[[1]]),".",1))
-  pairs1<-t(combn(cell.types,2))
+  pairs1<-t(utils::combn(cell.types,2))
   
   for(i in 1:nrow(pairs1)){
     x1<-pairs1[i,1];x2<-pairs1[i,2]

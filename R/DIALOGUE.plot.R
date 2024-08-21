@@ -115,7 +115,7 @@ DIALOGUE.plot.sig.comp<-function(R,main = ""){
   idx<-R$cell.types
   idxA<-idx
   for(i in 2:length(idx)){
-    idxA<-c(idxA,apply(combn(idx,i),2,function(x) paste(x,collapse = "&")))
+    idxA<-c(idxA,apply(utils::combn(idx,i),2,function(x) paste(x,collapse = "&")))
   }
   idxA
   m1<-laply(idxA,function(x) colSums(m==x))
